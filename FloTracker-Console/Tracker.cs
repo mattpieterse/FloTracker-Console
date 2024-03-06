@@ -11,5 +11,6 @@ namespace FloTracker_Console {
     /// </summary>
     internal class Tracker {
 
+        public List<Cycle> cycles = new List<Cycle>();
     }
 }
