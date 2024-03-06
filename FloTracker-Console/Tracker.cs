@@ -19,7 +19,14 @@ namespace FloTracker_Console {
 
         public void SaveData() {
             string data = JsonConvert.SerializeObject(cycles);
-            File.WriteAllText("periods.txt", data);
+            File.WriteAllText("History.txt", data);
+        }
+
+        public void LoadData() {
+            if (File.Exists("History.txt")) {
+                string data = File.ReadAllText("History.txt");
+                cycles = JsonConvert.DeserializeObject<List<Cycle>>(data);
+            }
         }
     }
 }
