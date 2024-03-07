@@ -33,5 +33,10 @@ namespace FloTracker_Console {
             Console.WriteLine("Flo Cycle Tracker (0.1.0)" + "\n---");
             Console.ResetColor();
         }
+
+        // --
+
+        static void ColorizeText(string text, int color, bool escape = true) {
+        }
     }
 }
