@@ -12,15 +12,25 @@ namespace FloTracker_Console {
         static Tracker tracker = new Tracker(dataStore);
 
         static void Main(string[] args) {
+
             DisplayStartupLogo();
+            DisplayConsoleMenu();
             Console.ReadLine();
         }
 
         // --
 
+        static void DisplayConsoleMenu() {
+            Console.WriteLine('\n' + "Utilities" + '\n');
+            Console.WriteLine("(1) Track and add latest cycles");
+            Console.WriteLine("(2) Calculate next cycle");
+            Console.WriteLine("(3) Display full cycle history");
+            Console.WriteLine("(4) Exit" + '\n');
+        }
+
         static void DisplayStartupLogo() {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Flo Cycle Tracker (0.1.0)" + "\n---\n");
+            Console.WriteLine("Flo Cycle Tracker (0.1.0)" + "\n---");
             Console.ResetColor();
         }
     }
