@@ -17,15 +17,41 @@ namespace FloTracker_Console {
 
         // -- Save & Load
 
+        // TODO: Use asynchronous function to multi-thread and free
+        //       memory whilst writing and reading from large files
+        // TODO: Use dependency injection to improve testability of
+        //       the code-base and flexibility/maintainability
+
         public void SaveData() {
-            string data = JsonConvert.SerializeObject(cycles);
-            File.WriteAllText("History.txt", data);
+            try {
+                using (var fileStream = File.OpenWrite("History.txt")) {
+                    // StreamWriter improves performance
+                    using (var writer = new StreamWriter(fileStream)) {
+                        writer.Write(JsonConvert.SerializeObject(cycles));
+                    }
+                }
+            }
+            catch (IOException) {
+                // TODO: Handle uncaught IOException
+            }
         }
 
         public void LoadData() {
-            if (File.Exists("History.txt")) {
-                string data = File.ReadAllText("History.txt");
-                cycles = JsonConvert.DeserializeObject<List<Cycle>>(data);
+            try {
+                if (File.Exists("History.txt")) {
+                    using (var fileStream = File.OpenRead("History.txt")) {
+                        // StreamReader improves performance
+                        using (var reader = new StreamReader(fileStream)) {
+                            cycles = JsonConvert.DeserializeObject<List<Cycle>>(reader.ReadToEnd());
+                        }
+                    }
+                }
+            }
+            catch (IOException) {
+                // TODO: Handle uncaught IOException
+            }
+            catch (JsonReaderException) {
+                // TODO: Handle uncaught JSON Parsing Exception
             }
         }
     }
