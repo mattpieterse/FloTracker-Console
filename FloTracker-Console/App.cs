@@ -21,11 +21,18 @@ namespace FloTracker_Console {
         // --
 
         static void DisplayConsoleMenu() {
+            Sunrise.WriteLine($"{"Utilities":Cyan}");
+            Sunrise.WriteLine($"{"Enter the index number of your desired option \n":DarkGray}");
+            Sunrise.WriteLine($"{"(1)":Blue} Add latest cycle details");
+            Sunrise.WriteLine($"{"(2)":Blue} Calculate next cycle");
+            Sunrise.WriteLine($"{"(3)":Blue} Display history of tracked cycles");
+            Sunrise.WriteLine($"{"(4)":Blue} Exit");
+            Sunrise.Write($"{"\nfl> ":Green}");
         }
 
         static void DisplayStartupLogo() {
-            Sunrise.WriteLine($"{"Flo Cycle Tracker (0.1.0)":blue}");
-            Sunrise.WriteLine($"{"---\n":blue}");
+            Sunrise.WriteLine($"{"Flo Cycle Tracker (0.1.0)":Blue}");
+            Sunrise.WriteLine($"{"---\n":Blue}");
         }
     }
 }
