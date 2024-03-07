@@ -11,25 +11,23 @@ namespace FloTracker_Console {
 
         public Tracker(IDataStore dataStore) {
             _dataStore = dataStore;
-            cycles = _dataStore.LoadData<List<Cycle>>("History.txt");
+            cycles = LoadFileDataStore();
         }
 
-        // -- Class Methods
-
         public void AddCycle(Cycle cycle) {
-            
             string previousID = cycles.Last().ID;
             try {
                 int converted = Convert.ToInt32(previousID);
                 int next = (converted + 1);
+                // Edge case exceeding format limits will overflow and will
+                // be assigned the raw integer value without reformatting
                 cycle.ID = next switch {
                     < 10 => $"00000{next}",
                     < 100 => $"0000{next}",
                     < 1000 => $"000{next}",
                     < 10000 => $"00{next}",
                     < 100000 => $"0{next}",
-                    // Edge case exceeding formatting
-                    _ => next.ToString() 
+                    _ => next.ToString()
                 };
             }
             catch (Exception) {
@@ -37,7 +35,7 @@ namespace FloTracker_Console {
             }
 
             cycles.Add(cycle);
-            SaveData();
+            SaveFileDataStore();
         }
 
         public Cycle CalculateNext() {
@@ -60,8 +58,12 @@ namespace FloTracker_Console {
 
         // -- Save & Load
 
-        private void SaveData() {
+        private void SaveFileDataStore() {
             _dataStore.SaveData<List<Cycle>>(cycles, "History.txt");
+        }
+
+        private List<Cycle> LoadFileDataStore() {
+            return _dataStore.LoadData<List<Cycle>>("History.txt");
         }
     }
 }
