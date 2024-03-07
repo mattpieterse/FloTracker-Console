@@ -29,9 +29,8 @@ namespace FloTracker_Console {
         }
 
         static void DisplayStartupLogo() {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Flo Cycle Tracker (0.1.0)" + "\n---");
-            Console.ResetColor();
+            ColorizeText("Flo Cycle Tracker (0.1.0)", 0);
+            ColorizeText("---", 0);
         }
 
         // --
