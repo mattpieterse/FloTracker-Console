@@ -23,7 +23,7 @@ namespace FloTracker_Console {
         static void DisplayConsoleMenu() {
             int userDestination = 0;
             do {
-                Sunrise.WriteLine($"{"Utilities":Cyan}");
+                Sunrise.WriteLine($"{"\nUtilities":Cyan}");
                 Sunrise.WriteLine($"{"Enter the index number of your desired option \n":DarkGray}");
                 Sunrise.WriteLine($"{"(1)":Blue} Add latest cycle details");
                 Sunrise.WriteLine($"{"(2)":Blue} Calculate next cycle");
@@ -55,7 +55,35 @@ namespace FloTracker_Console {
 
         static void DisplayStartupLogo() {
             Sunrise.WriteLine($"{"Flo Cycle Tracker (0.1.0)":Blue}");
-            Sunrise.WriteLine($"{"---\n":Blue}");
+            Sunrise.WriteLine($"{"---":Blue}");
+        }
+
+        static Cycle LogCycleData() {
+            Sunrise.WriteLine($"{"\nCreate Entry":Cyan}");
+            Sunrise.WriteLine($"{"Use regular language format (e.g. 25 January 2024) \n":DarkGray}");
+            while (true) {
+                try {
+                    Sunrise.WriteLine($"\nStart Date {"-> ":Green}");
+                    DateTime start = DateTime.Parse(Console.ReadLine());
+
+                    Sunrise.WriteLine($"\n  End Date {"-> ":Green}");
+                    DateTime end = DateTime.Parse(Console.ReadLine());
+
+                    if (start > end) {
+                        Sunrise.WriteLine($"{"\nStart date cannot be after the end date.":Blue}");
+                        continue;
+                    }
+
+                    return new Cycle {
+                        startDate = start,
+                        endDate = end
+                    };
+                }
+                catch (Exception) {
+                    Sunrise.WriteLine($"{"\nUse the correct date format as shown.":Blue}");
+                    continue;
+                }
+            }
         }
     }
 }
