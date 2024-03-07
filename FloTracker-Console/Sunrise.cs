@@ -8,7 +8,7 @@ namespace FloTracker_Console {
     internal class Sunrise : IFormatProvider, ICustomFormatter {
 
         private const char ColorSeparator = ':';
-        private const char Separator = (char) 65535;//non-printable character
+        private const char Separator = (char) 65535; // Non-printable character
 
         private static readonly Type CustomFormatterType;
         private static readonly Dictionary<string, ConsoleColor> Colors = new Dictionary<string, ConsoleColor>();
@@ -74,7 +74,7 @@ namespace FloTracker_Console {
             var sb = new StringBuilder();
             var format = new StringBuilder();
             var arg = new StringBuilder();
-            bool? state = null;//null->normal,true->separator start,2->separator end
+            bool? state = null; // null -> normal,true -> separator start, 2 -> separator end
 
             var defaultForegroundColor = Console.ForegroundColor;
             var defaultBackgroundColor = Console.BackgroundColor;
