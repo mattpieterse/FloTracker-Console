@@ -38,6 +38,8 @@ namespace FloTracker_Console {
 
                         switch (choice) {
                             case 1:
+                                Cycle newCycle = LogCycleData();
+                                tracker.AddCycle(newCycle);
                                 break;
                             case 2:
                                 break;
@@ -62,14 +64,14 @@ namespace FloTracker_Console {
             Sunrise.WriteLine($"{"Use regular language format (e.g. 25 January 2024) \n":DarkGray}");
             while (true) {
                 try {
-                    Sunrise.WriteLine($"\nStart Date {"-> ":Green}");
+                    Sunrise.WriteLine($"Start Date {"-> ":Green}");
                     DateTime start = DateTime.Parse(Console.ReadLine());
 
-                    Sunrise.WriteLine($"\n  End Date {"-> ":Green}");
+                    Sunrise.WriteLine($"  End Date {"-> ":Green}");
                     DateTime end = DateTime.Parse(Console.ReadLine());
 
                     if (start > end) {
-                        Sunrise.WriteLine($"{"\nStart date cannot be after the end date.":Blue}");
+                        Sunrise.WriteLine($"{"\nStart date cannot be after the end date. \n":Blue}");
                         continue;
                     }
 
@@ -79,7 +81,7 @@ namespace FloTracker_Console {
                     };
                 }
                 catch (Exception) {
-                    Sunrise.WriteLine($"{"\nUse the correct date format as shown.":Blue}");
+                    Sunrise.WriteLine($"{"\nUse the correct date format as shown. \n":Blue}");
                     continue;
                 }
             }
