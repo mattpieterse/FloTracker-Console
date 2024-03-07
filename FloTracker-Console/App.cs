@@ -16,39 +16,41 @@ namespace FloTracker_Console {
 
             DisplayStartupLogo();
             DisplayConsoleMenu();
-            Console.ReadLine();
         }
 
         // --
 
         static void DisplayConsoleMenu() {
+            int userDestination = 0;
+            do {
+                Sunrise.WriteLine($"{"Utilities":Cyan}");
+                Sunrise.WriteLine($"{"Enter the index number of your desired option \n":DarkGray}");
+                Sunrise.WriteLine($"{"(1)":Blue} Add latest cycle details");
+                Sunrise.WriteLine($"{"(2)":Blue} Calculate next cycle");
+                Sunrise.WriteLine($"{"(3)":Blue} Display history of tracked cycles");
+                Sunrise.WriteLine($"{"(4)":Blue} Exit");
+                Console.WriteLine();
 
-            Sunrise.WriteLine($"{"Utilities":Cyan}");
-            Sunrise.WriteLine($"{"Enter the index number of your desired option \n":DarkGray}");
-            Sunrise.WriteLine($"{"(1)":Blue} Add latest cycle details");
-            Sunrise.WriteLine($"{"(2)":Blue} Calculate next cycle");
-            Sunrise.WriteLine($"{"(3)":Blue} Display history of tracked cycles");
-            Sunrise.WriteLine($"{"(4)":Blue} Exit");
-            Console.WriteLine();
+                int choice = -1;
+                while (choice < 0 || choice > 4) {
+                    try {
+                        Sunrise.Write($"{"fl> ":Green}");
+                        choice = Convert.ToInt32(Console.ReadLine());
 
-            int choice = -1;
-            while (choice < 0 || choice > 4) {
-                try {
-                    Sunrise.Write($"{"fl> ":Green}");
-                    choice = Convert.ToInt32(Console.ReadLine());
-
-                    switch (choice) {
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
+                        switch (choice) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
                     }
-                } catch (Exception) { 
-                    // TODO: Handle caught Exception
+                    catch (Exception) {
+                        // TODO: Handle caught Exception
+                    }
                 }
-            }
+            } while (userDestination != 4);
         }
 
         static void DisplayStartupLogo() {
