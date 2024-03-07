@@ -9,6 +9,7 @@
     <RootNamespace>FloTracker_Console</RootNamespace>
     <AssemblyName>FloTracker-Console</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
