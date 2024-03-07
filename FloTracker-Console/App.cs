@@ -75,6 +75,8 @@ namespace FloTracker_Console {
                         continue;
                     }
 
+                    Sunrise.WriteLine($"{"\nCycle captured successfully. \n":Green}");
+
                     return new Cycle {
                         startDate = start,
                         endDate = end
