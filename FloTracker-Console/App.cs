@@ -29,13 +29,13 @@ namespace FloTracker_Console {
         }
 
         static void DisplayStartupLogo() {
-            ColorizeText("Flo Cycle Tracker (0.1.0)", 0);
-            ColorizeText("---", 0);
+            ToConsole("Flo Cycle Tracker (0.1.0)", 0);
+            ToConsole("---", 0);
         }
 
         // --
 
-        static void ColorizeText(string message, int color, bool escape = true) {
+        static void ToConsole(string message, int color = 4, bool escape = true) {
             
             Console.ForegroundColor = color switch {
                 0 => ConsoleColor.Blue,
