@@ -64,10 +64,10 @@ namespace FloTracker_Console {
             Sunrise.WriteLine($"{"Use regular language format (e.g. 25 January 2024) \n":DarkGray}");
             while (true) {
                 try {
-                    Sunrise.WriteLine($"Start Date {"-> ":Green}");
+                    Sunrise.Write($"Start Date {"-> ":Green}");
                     DateTime start = DateTime.Parse(Console.ReadLine());
 
-                    Sunrise.WriteLine($"  End Date {"-> ":Green}");
+                    Sunrise.Write($"  End Date {"-> ":Green}");
                     DateTime end = DateTime.Parse(Console.ReadLine());
 
                     if (start > end) {
