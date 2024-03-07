@@ -13,5 +13,13 @@ namespace FloTracker_Console {
             _dataStore = dataStore;
             cycles = _dataStore.LoadData<List<Cycle>>("History.txt");
         }
+
+        // -- Class Methods
+
+        // -- Save & Load
+
+        private void SaveData() {
+            _dataStore.SaveData<List<Cycle>>(cycles, "History.txt");
+        }
     }
 }
