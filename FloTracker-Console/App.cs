@@ -21,7 +21,7 @@ namespace FloTracker_Console {
         // --
 
         static void DisplayConsoleMenu() {
-            int userDestination = 0;
+            int choice = 0;
             do {
                 Sunrise.WriteLine($"{"\nUtilities":Cyan}");
                 Sunrise.WriteLine($"{"Enter the index number of your desired option \n":DarkGray}");
@@ -31,8 +31,7 @@ namespace FloTracker_Console {
                 Sunrise.WriteLine($"{"(4)":Blue} Exit");
                 Console.WriteLine();
 
-                int choice = -1;
-                while (choice < 0 || choice > 4) {
+                while (choice < 1 || choice > 4) {
                     try {
                         Sunrise.Write($"{"fl> ":Green}");
                         choice = Convert.ToInt32(Console.ReadLine());
@@ -50,7 +49,7 @@ namespace FloTracker_Console {
                         // TODO: Handle caught Exception
                     }
                 }
-            } while (userDestination != 4);
+            } while (choice != 4);
         }
 
         static void DisplayStartupLogo() {
