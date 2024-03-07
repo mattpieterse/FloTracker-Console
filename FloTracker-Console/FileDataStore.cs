@@ -1,16 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FloTracker_Console {
 
     internal class FileDataStore : IDataStore {
 
-        // Save & Load Functions
+        // Save & Load
 
         public void SaveData<T>(T data, string fileName) {
             string jsonData = JsonConvert.SerializeObject(data);
@@ -21,10 +16,9 @@ namespace FloTracker_Console {
                 }
             }
             catch (IOException) {
-                // TODO: Handle uncaught IOException
+                // TODO: Handle caught IOException
             }
         }
-        
 
         public T LoadData<T>(string fileName) {
             try {
@@ -39,10 +33,10 @@ namespace FloTracker_Console {
                 }
             }
             catch (IOException) {
-                // TODO: Handle uncaught IOException
+                // TODO: Handle caught IOException
             }
             catch (JsonReaderException) {
-                // TODO: Handle uncaught JSON Parsing Exception
+                // TODO: Handle caught JSON Parsing Exception
             }
             return default;
         }
