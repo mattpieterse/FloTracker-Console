@@ -40,6 +40,7 @@ namespace FloTracker_Console {
                             case 1:
                                 Cycle newCycle = LogCycleData();
                                 tracker.AddCycle(newCycle);
+                                choice = 0;
                                 break;
                             case 2:
                                 break;
