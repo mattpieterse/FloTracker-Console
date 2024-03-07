@@ -36,7 +36,23 @@ namespace FloTracker_Console {
 
         // --
 
-        static void ColorizeText(string text, int color, bool escape = true) {
+        static void ColorizeText(string message, int color, bool escape = true) {
+            
+            Console.ForegroundColor = color switch {
+                0 => ConsoleColor.Blue,
+                1 => ConsoleColor.Cyan,
+                2 => ConsoleColor.Magenta,
+                3 => ConsoleColor.Gray,
+                _ => ConsoleColor.White
+            };
+
+            if (escape) {
+                Console.WriteLine(message);
+            } else {
+                Console.Write(message);
+            }
+
+            Console.ResetColor();
         }
     }
 }
