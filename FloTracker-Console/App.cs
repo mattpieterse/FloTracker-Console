@@ -21,11 +21,13 @@ namespace FloTracker_Console {
         // --
 
         static void DisplayConsoleMenu() {
-            Console.WriteLine('\n' + "Utilities" + '\n');
-            Console.WriteLine("(1) Track and add latest cycles");
-            Console.WriteLine("(2) Calculate next cycle");
-            Console.WriteLine("(3) Display full cycle history");
-            Console.WriteLine("(4) Exit" + '\n');
+            ToConsole("\nUtilities", 1);
+            ToConsole("Enter the index number of your desired option\n");
+            ToConsole("(1) ", 0, false);
+            ToConsole("Track and add latest cycles");
+            ToConsole("(2) Calculate next cycle");
+            ToConsole("(3) Display full cycle history");
+            ToConsole("(4) Exit");
         }
 
         static void DisplayStartupLogo() {
