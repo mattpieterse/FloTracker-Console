@@ -17,6 +17,25 @@ namespace FloTracker_Console {
         // -- Class Methods
 
         public void AddCycle(Cycle cycle) {
+            
+            string previousID = cycles.Last().ID;
+            try {
+                int converted = Convert.ToInt32(previousID);
+                int next = (converted + 1);
+                cycle.ID = next switch {
+                    < 10 => $"00000{next}",
+                    < 100 => $"0000{next}",
+                    < 1000 => $"000{next}",
+                    < 10000 => $"00{next}",
+                    < 100000 => $"0{next}",
+                    // Edge case exceeding formatting
+                    _ => next.ToString() 
+                };
+            }
+            catch (Exception) {
+                // TODO: Handle caught Exception
+            }
+
             cycles.Add(cycle);
             SaveData();
         }
