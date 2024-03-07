@@ -16,6 +16,11 @@ namespace FloTracker_Console {
 
         // -- Class Methods
 
+        public void AddCycle(Cycle cycle) {
+            cycles.Add(cycle);
+            SaveData();
+        }
+
         // -- Save & Load
 
         private void SaveData() {
