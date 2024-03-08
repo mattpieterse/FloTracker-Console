@@ -71,9 +71,30 @@ namespace FloTracker_Console {
                         continue;
                     }
 
+                    // Validate input for flow level
+
+                    Sunrise.Write($"Flow Level {"-> ":Green}");
+                    string flow = Console.ReadLine();
+
+                    FlowLevel flowLevel = FlowLevel.Light;
+
+                    bool success = false;
+                    foreach (FlowLevel option in Enum.GetValues(typeof(FlowLevel))) {
+                        if (string.Equals(flow, option.ToString(), StringComparison.OrdinalIgnoreCase)) {
+                            flowLevel = option;
+                        }
+                    }
+                    if (!success) {
+                        Sunrise.WriteLine($"{"\nUse one of the options provided. \n":Green}");
+                        continue;
+                    }
+
+                    // Successful addition
+
                     Sunrise.WriteLine($"{"\nCycle captured successfully. \n":Green}");
 
                     return new Cycle {
+                        flow = flowLevel,
                         startDate = start,
                         endDate = end
                     };
