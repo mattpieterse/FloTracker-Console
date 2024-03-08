@@ -8,12 +8,11 @@ namespace FloTracker_Console {
         static Tracker tracker = new Tracker(dataStore);
 
         static void Main(string[] args) {
-
             DisplayStartupLogo();
             DisplayConsoleMenu();
         }
 
-        // --
+        // -- Display user interface
 
         static void DisplayConsoleMenu() {
             int choice = 0;
@@ -55,54 +54,68 @@ namespace FloTracker_Console {
             Sunrise.WriteLine($"{"---":Blue}");
         }
 
+        // -- Create new entry into database
+
         static Cycle LogCycleData() {
             Sunrise.WriteLine($"{"\nCreate Entry":Cyan}");
             Sunrise.WriteLine($"{"Use regular language format (e.g. 25 January 2024) \n":DarkGray}");
+            
+            DateTime[] timeline = GetCycleDateRange();
+            FlowLevel flowLevel = GetCycleFlowLevel();
+
+            Sunrise.WriteLine($"\n{"Cycle captured successfully":Green}\n");
+
+            return new Cycle {
+                flow = flowLevel,
+                startDate = timeline[0],
+                endDate = timeline[1]
+            };
+        }
+
+        static DateTime[] GetCycleDateRange() {
+            DateTime start, end;
             while (true) {
                 try {
                     Sunrise.Write($"Start Date {"-> ":Green}");
-                    DateTime start = DateTime.Parse(Console.ReadLine());
+                    start = DateTime.Parse(Console.ReadLine());
 
                     Sunrise.Write($"  End Date {"-> ":Green}");
-                    DateTime end = DateTime.Parse(Console.ReadLine());
+                    end = DateTime.Parse(Console.ReadLine());
 
                     if (start > end) {
-                        Sunrise.WriteLine($"{"\nStart date cannot be after the end date. \n":Blue}");
+                        Sunrise.WriteLine($"\n{"Start date cannot be after the end date":Blue}\n");
                         continue;
                     }
-
-                    // Validate input for flow level
-
-                    Sunrise.Write($"Flow Level {"-> ":Green}");
-                    string flow = Console.ReadLine();
-
-                    FlowLevel flowLevel = FlowLevel.Light;
-
-                    bool success = false;
-                    foreach (FlowLevel option in Enum.GetValues(typeof(FlowLevel))) {
-                        if (string.Equals(flow, option.ToString(), StringComparison.OrdinalIgnoreCase)) {
-                            flowLevel = option;
-                        }
-                    }
-                    if (!success) {
-                        Sunrise.WriteLine($"{"\nUse one of the options provided. \n":Green}");
-                        continue;
-                    }
-
-                    // Successful addition
-
-                    Sunrise.WriteLine($"{"\nCycle captured successfully. \n":Green}");
-
-                    return new Cycle {
-                        flow = flowLevel,
-                        startDate = start,
-                        endDate = end
-                    };
-                }
+                } 
                 catch (Exception) {
-                    Sunrise.WriteLine($"{"\nUse the correct date format as shown. \n":Blue}");
+                    Sunrise.WriteLine($"\n{"Use the correct date format as shown":Blue}\n");
                     continue;
                 }
+
+                return new DateTime[2] { start, end };
+            }
+        }
+
+        static FlowLevel GetCycleFlowLevel() {
+            FlowLevel flow = FlowLevel.Light;
+            while (true) {
+                try {
+                    Sunrise.Write($"\n{"Enter flow level (Light / Moderate / Heavy)":DarkGray}\n");
+                    Sunrise.Write($"Flow Level {"-> ":Green}");
+
+                    string input = Console.ReadLine();
+                    foreach (FlowLevel option in Enum.GetValues(typeof(FlowLevel))) {
+                        if (string.Equals(input, option.ToString(), StringComparison.OrdinalIgnoreCase)) {
+                            flow = option;
+                        }
+                    }
+                } 
+                catch (Exception) {
+                    Sunrise.WriteLine($"\n{"Use one of the options provided":Green}\n");
+                    continue;
+                }
+
+                return flow;
             }
         }
     }
